@@ -1,0 +1,19 @@
+<div class="image-carousel">
+<div class="image-carousel__previous" @click="onPreviousClick">前へ</div>
+<div class="image-carousel__next" @click="onNextClick">次へ</div>
+<div class="image-carousel__body" v-bind:style="{width: itemWidth + 'px'}">
+    <transition-group 
+     name="image-carousel__list" 
+     tag="div" 
+     class="image-carousel__container" 
+     v-bind:style="{width: wholeWidth + 'px', marginLeft: margin + 'px'}">
+        <figure v-for="index in imageRange"
+             v-bind:key="index" 
+             v-bind:style="{width: itemWidth + 'px'}"
+             class="image-carousel__item">
+            <img :src="imageList[index]" class="image-carousel__item__image">
+        </figure>
+    </transition-group>
+</div>
+</div>
+<!--containerの横幅を全画像が入るサイズにして，translateXする．-->

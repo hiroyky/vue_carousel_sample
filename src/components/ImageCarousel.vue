@@ -1,0 +1,45 @@
+<template src="./image-carousel.vue.html"></template>
+
+<script lang="ts">
+import Vue from "vue";
+import {Component, Prop} from "vue-property-decorator";
+
+@Component({})
+export default class extends Vue {
+    @Prop()
+    images: string;
+    @Prop()
+    itemWidth: number;
+
+    currentIndex = 0;
+
+    get imageList(): string[] {
+        return JSON.parse(this.images);
+    }
+
+    get imageRange(): number [] {
+        return Array.from({length:this.imageList.length}, (k, v) => v);
+    }
+
+    get wholeWidth(): number {
+        return this.itemWidth * this.imageList.length;
+    }
+
+    get margin(): number {
+        return this.currentIndex * -1 * this.itemWidth;
+    }
+
+    onPreviousClick() {
+        if(this.currentIndex > 0) {
+            --this.currentIndex;
+        }
+    }
+
+    onNextClick() {
+        if(this.currentIndex < this.imageRange.length - 1) {
+            ++this.currentIndex;
+        }
+    }
+}
+
+</script>
