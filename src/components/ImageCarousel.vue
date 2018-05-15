@@ -8,6 +8,8 @@ import {Component, Prop} from "vue-property-decorator";
 export default class extends Vue {
     @Prop()
     images: string;
+    @Prop()
+    itemWidth: string;
 
     currentIndex = 0;
 
