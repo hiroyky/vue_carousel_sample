@@ -9,7 +9,7 @@ export default class extends Vue {
     @Prop()
     images: string;
     @Prop()
-    itemWidth: string;
+    itemWidth: number;
 
     currentIndex = 0;
 
@@ -19,6 +19,14 @@ export default class extends Vue {
 
     get imageRange(): number [] {
         return Array.from({length:this.imageList.length}, (k, v) => v);
+    }
+
+    get wholeWidth(): number {
+        return this.itemWidth * this.imageList.length;
+    }
+
+    get margin(): number {
+        return this.currentIndex * -1 * this.itemWidth;
     }
 
     onPreviousClick() {
