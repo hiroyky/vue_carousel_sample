@@ -2,6 +2,8 @@
 
 <script lang="ts">
 import Vue from "vue";
+import VueTouch from "vue-touch";
+Vue.use(VueTouch, {name: 'v-touch'})
 import {Component, Prop} from "vue-property-decorator";
 
 @Component({})
@@ -30,12 +32,27 @@ export default class extends Vue {
     }
 
     onPreviousClick() {
+        this.displayPrevious();
+    }
+
+    onNextClick() {
+        this.displayNext();
+    }
+
+    onSwipeLeft() {
+        this.displayNext();
+    }
+
+    onSwipeRight() {
+        this.displayPrevious();
+    }
+
+    protected displayPrevious() {
         if(this.currentIndex > 0) {
             --this.currentIndex;
         }
     }
-
-    onNextClick() {
+    protected displayNext() {
         if(this.currentIndex < this.imageRange.length - 1) {
             ++this.currentIndex;
         }
