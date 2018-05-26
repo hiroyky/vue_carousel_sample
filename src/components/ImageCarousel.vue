@@ -9,14 +9,14 @@ import {Component, Prop} from "vue-property-decorator";
 @Component({})
 export default class extends Vue {
     @Prop()
-    images: string;
+    protected images: string[];
     @Prop()
-    itemWidth: number;
+    protected itemWidth: number;
 
     currentIndex = 0;
 
     get imageList(): string[] {
-        return JSON.parse(this.images);
+        return this.images;
     }
 
     get imageRange(): number [] {
